@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | Best Cars</title>
+
+    <!-- Project stylesheets -->
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+
+    <!-- Custom styling -->
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        /* =========================
+           Navigation Bar
+           ========================= */
+
+        .main-navbar {
+            background-color: #0f766e;
+            min-height: 80px;
+        }
+
+        .brand-name {
+            color: white !important;
+            font-size: 28px;
+            font-weight: bold;
+            margin-right: 50px;
+            text-decoration: none;
+        }
+
+        .main-navbar .nav-link {
+            color: white !important;
+            font-size: 17px;
+            margin-right: 15px;
+            padding: 10px 15px;
+            border-radius: 6px;
+        }
+
+        .main-navbar .nav-link:hover,
+        .main-navbar .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* =========================
+           Main Container
+           ========================= */
+
+        .contact-container {
+            width: 88%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        /* =========================
+           Header
+           ========================= */
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .contact-header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #0f766e;
+            margin-bottom: 15px;
+        }
+
+        .contact-header p {
+            max-width: 750px;
+            margin: 0 auto;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        /* =========================
+           Contact Information
+           ========================= */
+
+        .contact-content {
+            display: flex;
+            gap: 30px;
+            align-items: stretch;
+            margin-bottom: 45px;
+        }
+
+        .contact-info,
+        .contact-form {
+            background-color: white;
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-info {
+            width: 40%;
+        }
+
+        .contact-form {
+            width: 60%;
+        }
+
+        .section-title {
+            color: #222;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           Information Items
+           ========================= */
+
+        .info-item {
+            margin-bottom: 25px;
+        }
+
+        .info-item h3 {
+            font-size: 18px;
+            color: #0f766e;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .info-item p {
+            margin: 0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           Form
+           ========================= */
+
+        .form-label {
+            font-weight: 600;
+            color: #444;
+        }
+
+        .form-control {
+            padding: 12px;
+            border-radius: 7px;
+        }
+
+        .form-control:focus {
+            border-color: #0f766e;
+            box-shadow: 0 0 0 0.2rem rgba(15, 118, 110, 0.15);
+        }
+
+        .submit-button {
+            background-color: #0f766e;
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #115e59;
+        }
+
+        /* =========================
+           Business Hours
+           ========================= */
+
+        .hours-section {
+            background-color: #0f766e;
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .hours-section h2 {
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        .hours-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .hours-item {
+            min-width: 180px;
+        }
+
+        .hours-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .hours-item p {
+            margin: 0;
+            color: #e5e7eb;
+        }
+
+        /* =========================
+           Footer
+           ========================= */
+
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .footer p {
+            margin: 0;
+            color: #d1d5db;
+        }
+
+        /* =========================
+           Responsive Design
+           ========================= */
+
+        @media (max-width: 768px) {
+
+            .contact-container {
+                width: 94%;
+                margin-top: 30px;
+            }
+
+            .contact-header h1 {
+                font-size: 34px;
+            }
+
+            .contact-content {
+                flex-direction: column;
+            }
+
+            .contact-info,
+            .contact-form {
+                width: 100%;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 25px;
+            }
+
+            .hours-section {
+                padding: 30px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     Navigation Bar
+     ========================= -->
+
+<nav class="navbar navbar-expand-lg main-navbar">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand brand-name" href="/">
+            Best Cars
+        </a>
+
+
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarText"
+                aria-controls="navbarText"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarText">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <!-- Home -->
+                <li class="nav-item">
+
+                    <a
+                            class="nav-link"
+                            href="/">
+                        Home
+                    </a>
+
+                </li>
+
+
+                <!-- About Us -->
+                <li class="nav-item">
+
+                    <a
+                            class="nav-link"
+                            href="/about/">
+                        About Us
+                    </a>
+
+                </li>
+
+
+                <!-- Contact Us -->
+                <li class="nav-item">
+
+                    <a
+                            class="nav-link active"
+                            aria-current="page"
+                            href="/contact/">
+                        Contact Us
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     Main Content
+     ========================= -->
+
+<main class="contact-container">
+
+
+    <!-- Header -->
+
+    <section class="contact-header">
+
+        <h1>Contact Us</h1>
+
+        <p>
+            Have a question about a vehicle, financing, or scheduling
+            a test drive? Our friendly team is ready to help.
+            Contact Best Cars today and we will be happy to assist you.
+        </p>
+
+    </section>
+
+
+    <!-- Contact Information + Form -->
+
+    <section class="contact-content">
+
+
+        <!-- Contact Information -->
+
+        <div class="contact-info">
+
+            <h2 class="section-title">
+                Get In Touch
+            </h2>
+
+
+            <!-- Address -->
+
+            <div class="info-item">
+
+                <h3>
+                    Our Location
+                </h3>
+
+                <p>
+                    1250 Market Street<br>
+                    Chicago, IL 60601<br>
+                    United States
+                </p>
+
+            </div>
+
+
+            <!-- Phone -->
+
+            <div class="info-item">
+
+                <h3>
+                    Phone
+                </h3>
+
+                <p>
+                    +1 (312) 555-0188
+                </p>
+
+            </div>
+
+
+            <!-- Email -->
+
+            <div class="info-item">
+
+                <h3>
+                    Email
+                </h3>
+
+                <p>
+                    info@bestcars.example
+                </p>
+
+            </div>
+
+
+            <!-- Sales -->
+
+            <div class="info-item">
+
+                <h3>
+                    Sales Department
+                </h3>
+
+                <p>
+                    sales@bestcars.example
+                </p>
+
+            </div>
+
+
+            <!-- Service -->
+
+            <div class="info-item">
+
+                <h3>
+                    Customer Service
+                </h3>
+
+                <p>
+                    support@bestcars.example
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Contact Form -->
+
+        <div class="contact-form">
+
+            <h2 class="section-title">
+                Send Us a Message
+            </h2>
+
+
+            <form>
+
+                <!-- Name -->
+
+                <div class="mb-3">
+
+                    <label
+                            for="name"
+                            class="form-label">
+                        Full Name
+                    </label>
+
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            required>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="mb-3">
+
+                    <label
+                            for="email"
+                            class="form-label">
+                        Email Address
+                    </label>
+
+                    <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            required>
+
+                </div>
+
+
+                <!-- Phone -->
+
+                <div class="mb-3">
+
+                    <label
+                            for="phone"
+                            class="form-label">
+                        Phone Number
+                    </label>
+
+                    <input
+                            type="tel"
+                            class="form-control"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter your phone number">
+
+                </div>
+
+
+                <!-- Subject -->
+
+                <div class="mb-3">
+
+                    <label
+                            for="subject"
+                            class="form-label">
+                        Subject
+                    </label>
+
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="subject"
+                            name="subject"
+                            placeholder="How can we help you?">
+
+                </div>
+
+
+                <!-- Message -->
+
+                <div class="mb-3">
+
+                    <label
+                            for="message"
+                            class="form-label">
+                        Message
+                    </label>
+
+                    <textarea
+                            class="form-control"
+                            id="message"
+                            name="message"
+                            rows="5"
+                            placeholder="Write your message here..."
+                            required></textarea>
+
+                </div>
+
+
+                <!-- Submit -->
+
+                <button
+                        type="submit"
+                        class="submit-button">
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Business Hours -->
+
+    <section class="hours-section">
+
+        <h2>
+            Business Hours
+        </h2>
+
+
+        <div class="hours-container">
+
+            <div class="hours-item">
+
+                <h3>
+                    Monday - Friday
+                </h3>
+
+                <p>
+                    9:00 AM - 7:00 PM
+                </p>
+
+            </div>
+
+
+            <div class="hours-item">
+
+                <h3>
+                    Saturday
+                </h3>
+
+                <p>
+                    9:00 AM - 6:00 PM
+                </p>
+
+            </div>
+
+
+            <div class="hours-item">
+
+                <h3>
+                    Sunday
+                </h3>
+
+                <p>
+                    10:00 AM - 4:00 PM
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================
+     Footer
+     ========================= -->
+
+<footer class="footer">
+
+    <p>
+        &copy; 2026 Best Cars. All rights reserved.
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
