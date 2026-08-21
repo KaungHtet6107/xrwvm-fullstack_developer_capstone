@@ -199,18 +199,13 @@ def registration(request):
         )
 
 def get_cars(request):
-    """
-    Return all car models together with their car makes.
-    """
+    count = CarMake.objects.all().count()
 
-    # Check whether car makes exist
-    count = CarMake.objects.count()
+    print(count)
 
-    # Populate database if empty
     if count == 0:
         initiate()
 
-    # Get all car models and their related car make
     car_models = CarModel.objects.select_related('car_make')
 
     cars = []
