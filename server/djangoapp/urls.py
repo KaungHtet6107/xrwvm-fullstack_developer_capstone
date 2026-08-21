@@ -4,38 +4,37 @@ from django.conf import settings
 
 from . import views
 
+
 app_name = 'djangoapp'
+
 
 urlpatterns = [
 
-                  # Login
-                  path(
-                      route='login',
-                      view=views.login_user,
-                      name='login'
-                  ),
+    path(
+        route='login',
+        view=views.login_user,
+        name='login'
+    ),
 
-                  # Registration
-                  path(
-                      route='register',
-                      view=views.registration,
-                      name='register'
-                  ),
+    path(
+        route='register',
+        view=views.registration,
+        name='register'
+    ),
 
-                  # Logout
-                  path(
-                      route='logout',
-                      view=views.logout_request,
-                      name='logout'
-                  ),
+    path(
+        route='logout',
+        view=views.logout_request,
+        name='logout'
+    ),
 
-                  # Dealer reviews
-                  # We will add these in later lessons.
+    path(
+        route='get_cars',
+        view=views.get_cars,
+        name='getcars'
+    ),
 
-                  # Add review
-                  # We will add this in a later lesson.
-
-              ] + static(
+] + static(
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT
 )

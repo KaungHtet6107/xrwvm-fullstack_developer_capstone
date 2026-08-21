@@ -34,6 +34,14 @@ const dealerships_data = JSON.parse(
 
 
 // ============================================================
+// Mongoose Models
+// ============================================================
+
+const Reviews = require('./review');
+const Dealerships = require('./dealership');
+
+
+// ============================================================
 // Connect to MongoDB
 // ============================================================
 
@@ -43,41 +51,49 @@ mongoose.connect(
         dbName: 'dealershipsDB'
     }
 )
-.then(() => {
+.then(async () => {
+
     console.log('Connected to MongoDB');
 
-    // Clear existing data and load the provided data
-    return Promise.all([
-        Reviews.deleteMany({}),
-        Dealerships.deleteMany({})
-    ]);
-})
-.then(() => {
+    try {
 
-    return Promise.all([
-        Reviews.insertMany(reviews_data.reviews),
-        Dealerships.insertMany(dealerships_data.dealerships)
-    ]);
+        // Clear old data
+        await Reviews.deleteMany({});
+        await Dealerships.deleteMany({});
 
-})
-.then(() => {
-    console.log('Database data loaded successfully');
+        // Insert provided data
+        await Reviews.insertMany(
+            reviews_data.reviews
+        );
+
+        await Dealerships.insertMany(
+            dealerships_data.dealerships
+        );
+
+        console.log('Database data loaded successfully');
+
+    } catch (error) {
+
+        console.error(
+            'Error loading database:',
+            error
+        );
+
+    }
+
 })
 .catch((error) => {
-    console.error('MongoDB error:', error);
+
+    console.error(
+        'MongoDB connection error:',
+        error
+    );
+
 });
 
 
 // ============================================================
-// Mongoose Models
-// ============================================================
-
-const Reviews = require('./review');
-const Dealerships = require('./dealership');
-
-
-// ============================================================
-// Home
+// Home endpoint
 // ============================================================
 
 app.get('/', async (req, res) => {
@@ -90,7 +106,7 @@ app.get('/', async (req, res) => {
 
 
 // ============================================================
-// Fetch ALL reviews
+// Fetch all reviews
 // ============================================================
 
 app.get('/fetchReviews', async (req, res) => {
@@ -115,7 +131,7 @@ app.get('/fetchReviews', async (req, res) => {
 
 
 // ============================================================
-// Fetch reviews for a particular dealership
+// Fetch reviews by dealership ID
 // ============================================================
 
 app.get('/fetchReviews/dealer/:id', async (req, res) => {
@@ -135,7 +151,7 @@ app.get('/fetchReviews/dealer/:id', async (req, res) => {
         console.error(error);
 
         res.status(500).json({
-            error: 'Error fetching documents'
+            error: 'Error fetching reviews'
         });
 
     }
@@ -189,7 +205,7 @@ app.get('/fetchDealers/:state', async (req, res) => {
         console.error(error);
 
         res.status(500).json({
-            error: 'Error fetching dealerships'
+            error: 'Error fetching dealerships by state'
         });
 
     }
@@ -235,7 +251,7 @@ app.get('/fetchDealer/:id', async (req, res) => {
 
 
 // ============================================================
-// Insert a review
+// Insert review
 // ============================================================
 
 app.post(
@@ -249,7 +265,6 @@ app.post(
 
             const data = JSON.parse(req.body);
 
-            // Get the latest review ID
             const documents = await Reviews
                 .find()
                 .sort({
@@ -284,7 +299,8 @@ app.post(
 
             });
 
-            const savedReview = await review.save();
+            const savedReview =
+                await review.save();
 
             res.json(savedReview);
 

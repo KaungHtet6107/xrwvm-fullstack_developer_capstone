@@ -6,6 +6,9 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
+from .models import CarMake, CarModel
+from .populate import initiate
+
 import logging
 import json
 
@@ -195,6 +198,32 @@ def registration(request):
             status=500
         )
 
+def get_cars(request):
+    """
+    Return all car models together with their car makes.
+    """
+
+    # Check whether car makes exist
+    count = CarMake.objects.count()
+
+    # Populate database if empty
+    if count == 0:
+        initiate()
+
+    # Get all car models and their related car make
+    car_models = CarModel.objects.select_related('car_make')
+
+    cars = []
+
+    for car_model in car_models:
+        cars.append({
+            "CarModel": car_model.name,
+            "CarMake": car_model.car_make.name
+        })
+
+    return JsonResponse({
+        "CarModels": cars
+    })
 
 # ============================================================
 # Dealerships
