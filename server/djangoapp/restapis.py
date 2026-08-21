@@ -28,7 +28,7 @@ backend_url = os.getenv(
 
 sentiment_analyzer_url = os.getenv(
     'sentiment_analyzer_url',
-    default='http://localhost:5050/'
+    default='http://localhost:5050'
 ).rstrip('/')
 
 
@@ -39,12 +39,6 @@ sentiment_analyzer_url = os.getenv(
 def get_request(endpoint, **kwargs):
     """
     Send a GET request to the backend API.
-
-    Example:
-        get_request('/fetchDealers')
-
-    Example with parameters:
-        get_request('/fetchDealer', dealerId='3')
     """
 
     params = {}
@@ -81,7 +75,7 @@ def get_request(endpoint, **kwargs):
 
 def analyze_review_sentiments(text):
     """
-    Send review text to the sentiment analyzer microservice.
+    Send review text to sentiment analyzer.
     """
 
     encoded_text = quote(str(text), safe='')
@@ -116,7 +110,7 @@ def analyze_review_sentiments(text):
 
 def post_review(data_dict):
     """
-    Send a dealer review to the backend API.
+    Send review data to the Express/MongoDB backend.
     """
 
     request_url = backend_url + "/insert_review"

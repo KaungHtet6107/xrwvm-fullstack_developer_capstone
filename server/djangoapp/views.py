@@ -312,20 +312,8 @@ def get_dealer_reviews(request, dealer_id):
 @csrf_exempt
 def add_review(request):
 
-    # Only POST is allowed
-    if request.method != 'POST':
-
-        return JsonResponse(
-            {
-                "status": 405,
-                "message": "POST request required"
-            },
-            status=405
-        )
-
     # Only authenticated users can post reviews
     if request.user.is_anonymous:
-
         return JsonResponse(
             {
                 "status": 403,
@@ -334,19 +322,27 @@ def add_review(request):
             status=403
         )
 
+    # Only POST requests are accepted
+    if request.method != "POST":
+        return JsonResponse(
+            {
+                "status": 405,
+                "message": "POST request required"
+            },
+            status=405
+        )
+
     try:
 
-        # Convert request body from JSON to Python dictionary
+        # Convert JSON request body into Python dictionary
         data = json.loads(request.body)
 
         print("Review data:", data)
 
-        # Send review to Node.js backend
+        # Send review to Express/MongoDB backend
         response = post_review(data)
 
-        # Check whether backend returned a response
         if response is None:
-
             return JsonResponse(
                 {
                     "status": 500,
@@ -355,7 +351,8 @@ def add_review(request):
                 status=500
             )
 
-        # Successfully posted
+        print("Backend review response:", response)
+
         return JsonResponse(
             {
                 "status": 200,
@@ -369,7 +366,7 @@ def add_review(request):
         return JsonResponse(
             {
                 "status": 400,
-                "message": "Invalid JSON request"
+                "message": "Invalid JSON"
             },
             status=400
         )
